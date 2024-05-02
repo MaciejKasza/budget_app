@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
-const ProtectedRoute = ({ children }) => {
+const AuthRoute = ({ children }) => {
   //Tutaj hook sprawdzajacy czy user jest zalogowany
-  const user = "mkasza";
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user === null) {
+    console.log("AuthRoute: ", user);
+    if (user === null || user === undefined) {
       navigate("/login", { replace: true });
     }
-  }, []);
+  }, [navigate, user]);
   return children;
 };
 
-export default ProtectedRoute;
+export default AuthRoute;

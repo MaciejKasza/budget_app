@@ -6,18 +6,23 @@ export const useUserLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const loginUser = async (email, password) => {
+  const login = async (email, password) => {
     setIsLoading(true);
     setError(null);
 
     //uderzenei do API w celu rejestracji
-    const response = await fetch("api/user/login", {
-      method: "POST",
-      headers: { "Content-Type": " application.json" },
-      body: JSON.stringify({ email, password }),
-    });
+    // const response = await fetch("api/user/login", {
+    //   method: "POST",
+    //   headers: { "Content-Type": " application.json" },
+    //   body: JSON.stringify({ email, password }),
+    // });
     //Rozpakowanie odpowiedzi
-    const json = await response.json();
+    // const json = await response.json();
+
+    //MOCK
+    const response = { ok: true };
+    const json = { email: email, token: "123" };
+
     //Jeśli statsu nie jest ok(!200)
     if (!response.ok) {
       setIsLoading(false);
@@ -29,9 +34,9 @@ export const useUserLogin = () => {
       //aktualiacji auth contextu
       dispatch({ type: "LOGIN", payload: json });
 
-      isLoading(false);
+      setIsLoading(false);
     }
   };
 
-  return { loginUser, isLoading, error };
+  return { login, isLoading, error };
 };

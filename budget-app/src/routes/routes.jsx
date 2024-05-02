@@ -1,25 +1,38 @@
 import React from "react";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import ProtectedRoute from "./ProtectedRoute";
+import AuthRoute from "./AuthRoute";
+import { Header } from "../components/Header";
+import NotAuthRoute from "./NotAuthRoute";
 
 export const router = createBrowserRouter([
   {
     path: "/",
 
     element: (
-      <ProtectedRoute>
+      <AuthRoute>
+        <Header />
         <h1>Main page</h1>
-      </ProtectedRoute>
+      </AuthRoute>
     ),
     errorElement: <>EROR 404</>,
     children: [],
   },
   {
     path: "/login",
-    element: <>Login page</>,
+    element: (
+      <NotAuthRoute>
+        <Header />
+        Login page
+      </NotAuthRoute>
+    ),
   },
   {
     path: "/register",
-    element: <>Register page</>,
+    element: (
+      <>
+        <Header />
+        Register page
+      </>
+    ),
   },
 ]);
