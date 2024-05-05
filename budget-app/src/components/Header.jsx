@@ -29,7 +29,8 @@ export const Header = () => {
           </>
         ) : (
           <>
-            <span>Email {user?.email}</span>
+            {console.log("Header", user)}
+            <span>Email {user.email}</span>
             <button onClick={handleLogout}>Logout</button>
           </>
         )}
