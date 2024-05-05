@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 export const useUserLogin = () => {
   const [error, setError] = useState(null);
@@ -35,6 +36,8 @@ export const useUserLogin = () => {
       dispatch({ type: "LOGIN", payload: json });
 
       setIsLoading(false);
+
+      console.log("Login complete");
     }
   };
 

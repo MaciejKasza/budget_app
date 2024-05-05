@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useUserLogout } from "../hooks/useUserLogout";
 import { useUserLogin } from "../hooks/useUserLogin";
+import ROUTES from "../routes/Routes";
 
 export const Header = () => {
   const { user } = useAuthContext();
@@ -22,8 +23,8 @@ export const Header = () => {
       <div className="navigate">
         {!user ? (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to={ROUTES.LOGIN}>Login</Link>
+            <Link to={ROUTES.REGISTER}>Register</Link>
             <button onClick={handleLogin}>LogIn</button>
           </>
         ) : (

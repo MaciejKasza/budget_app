@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
+import ROUTES from "./Routes";
 
 const AuthRoute = ({ children }) => {
   //Tutaj hook sprawdzajacy czy user jest zalogowany
@@ -10,9 +11,10 @@ const AuthRoute = ({ children }) => {
   useEffect(() => {
     console.log("AuthRoute: ", user);
     if (user === null || user === undefined) {
-      navigate("/login", { replace: true });
+      navigate(ROUTES.LOGIN, { replace: true });
     }
-  }, [navigate, user]);
+  }, []);
+
   return children;
 };
 

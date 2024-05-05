@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import { useUserRegister } from "../hooks/useUserRegister";
+import React, { useEffect, useState } from "react";
+import { useUserLogin } from "../hooks/useUserLogin";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 import ROUTES from "../routes/Routes";
 
 const initialFormData = {
   email: "",
   password: "",
-  name: "",
 };
 
-export const RegisterPage = () => {
+export const LoginPage = () => {
   const [formData, setFormData] = useState(initialFormData);
-  const { register } = useUserRegister();
+  const { login } = useUserLogin();
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,8 +22,8 @@ export const RegisterPage = () => {
   };
 
   const handleSubmit = (e) => {
-    const { email, password, name } = formData;
-    register(email, password, name);
+    const { email, password } = formData;
+    login(email, password);
 
     navigate(ROUTES.MAIN_DASHBOARD, { replace: true });
   };
@@ -43,16 +44,6 @@ export const RegisterPage = () => {
             />
           </div>
           <div className="row">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="row">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -67,7 +58,7 @@ export const RegisterPage = () => {
           </div>
         </div>
         <div>
-          Login: <Link to={ROUTES.LOGIN}>Login page</Link>
+          Register: <Link to={ROUTES.REGISTER}>Register page</Link>
         </div>
       </div>
     </>
