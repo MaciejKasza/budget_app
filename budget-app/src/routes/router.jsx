@@ -5,7 +5,7 @@ import { Header } from "../components/Header";
 import NotAuthRoute from "./NotAuthRoute";
 import { RegisterPage } from "../pages/RegisterPage";
 import { LoginPage } from "../pages/LoginPage";
-import ROUTES from "./ROUTES";
+import ROUTES from "./Routes";
 
 export const router = createBrowserRouter([
   {
