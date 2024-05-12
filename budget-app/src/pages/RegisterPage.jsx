@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useUserRegister } from "../hooks/useUserRegister";
+import { useUserRegister } from "../hooks/user/useUserRegister";
 import { Link, useNavigate } from "react-router-dom";
-import ROUTES from "../routes/Routes";
+import ROUTES from "../utils/Routes";
 
 const initialFormData = {
   email: "",

@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useBudgetContext } from "../useBudgetContext";
 import { useNavigate } from "react-router-dom";
+import { getBudgetsList } from "../../api/ProductApi";
 
-export const useUserLogin = () => {
+export const useBudgetList = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { dispatch } = useBudgetContext();
 
-  const login = async (email, password) => {
+  const getList = async () => {
     setIsLoading(true);
     setError(null);
 
     //uderzenei do API w celu rejestracji
-    // const response = await fetch("api/user/login", {
+    // const response = await fetch(uri, {
     //   method: "POST",
     //   headers: { "Content-Type": " application.json" },
     //   body: JSON.stringify({ email, password }),
@@ -22,7 +23,7 @@ export const useUserLogin = () => {
 
     //MOCK
     const response = { ok: true };
-    const json = { email: email, token: "123" };
+    const json = await getBudgetsList();
 
     //Jeśli statsu nie jest ok(!200)
     if (!response.ok) {
@@ -30,16 +31,14 @@ export const useUserLogin = () => {
       setError(json.error);
     }
     if (response.ok) {
-      //dodanie usera do local sotrage
-      localStorage.setItem("user", JSON.stringify(json));
-      //aktualiacji auth contextu
-      dispatch({ type: "LOGIN", payload: json });
+      //aktualiacji bunget contextu
+      dispatch({ type: "GET", payload: json });
 
       setIsLoading(false);
 
-      console.log("Login complete");
+      console.log("Fetching budget list complete");
     }
   };
 
-  return { login, isLoading, error };
+  return { getList, isLoading, error };
 };

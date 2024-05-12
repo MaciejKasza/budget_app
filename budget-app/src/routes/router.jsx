@@ -1,11 +1,17 @@
 import React from "react";
-import { createBrowserRouter, Link, Navigate, Outlet } from "react-router-dom";
+import { createBrowserRouter, Link, Outlet } from "react-router-dom";
 import AuthRoute from "./AuthRoute";
-import { Header } from "../components/Header";
 import NotAuthRoute from "./NotAuthRoute";
 import { RegisterPage } from "../pages/RegisterPage";
 import { LoginPage } from "../pages/LoginPage";
-import ROUTES from "./Routes";
+import ROUTES from "../utils/Routes";
+import { AppLayout } from "../layouts/AppLayout";
+import { MainDasboardLayout } from "../layouts/MainDasboardLayout";
+import { MainDasboard } from "../pages/dasboards/MainDasboard";
+import { TransactionDasboard } from "../pages/dasboards/TransactionDasboard";
+import { IncomesDasboard } from "../pages/dasboards/IncomesDasboard";
+import { ExpenseDasboard } from "../pages/dasboards/ExpenseDasboard";
+import { SettingsDasboard } from "../pages/dasboards/SettingsDasboard";
 
 export const router = createBrowserRouter([
   {
@@ -25,29 +31,29 @@ export const router = createBrowserRouter([
     path: ROUTES.APP,
     element: (
       <AuthRoute>
-        <Outlet />
+        <AppLayout />
       </AuthRoute>
     ),
     children: [
       {
         path: ROUTES.MAIN_DASHBOARD,
-        element: (
-          <>
-            <Header />
-            <h1>MainDasboard page</h1>
-            <Link to={ROUTES.BUDGET_LIST}>BudgetList page</Link>
-          </>
-        ),
+        element: <MainDasboard />,
       },
       {
-        path: ROUTES.BUDGET_LIST,
-        element: (
-          <>
-            <Header />
-            <h1>Budget list</h1>
-            <Link to={ROUTES.MAIN_DASHBOARD}>MainDasboard page</Link>
-          </>
-        ),
+        path: ROUTES.TRANSACTION_DASHBOARD,
+        element: <TransactionDasboard />,
+      },
+      {
+        path: ROUTES.INCOME_DASHBOARD,
+        element: <IncomesDasboard />,
+      },
+      {
+        path: ROUTES.EXPENS_DASHBOARD,
+        element: <ExpenseDasboard />,
+      },
+      {
+        path: ROUTES.SETTINGS,
+        element: <SettingsDasboard />,
       },
     ],
   },

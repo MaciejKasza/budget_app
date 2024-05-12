@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
-import ROUTES from "./Routes";
+import ROUTES from "../utils/Routes";
 
 const NotAuthRoute = ({ children }) => {
   //Tutaj hook sprawdzajacy czy user jest zalogowany

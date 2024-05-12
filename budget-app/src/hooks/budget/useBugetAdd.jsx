@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useBudgetContext } from "../useBudgetContext";
 import { useNavigate } from "react-router-dom";
+import { addBudgetAPI } from "../../api/ProductApi";
 
-export const useUserRegister = () => {
+export const useBugetAdd = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
-  const navigate = useNavigate();
+  const { dispatch } = useBudgetContext();
 
-  const register = async (email, password, name) => {
+  const addBudget = async (name, amount) => {
     setIsLoading(true);
     setError(null);
 
     //uderzenei do API w celu rejestracji
-    // const response = await fetch("api/user/register", {
+    // const response = await fetch(uri, {
     //   method: "POST",
     //   headers: { "Content-Type": " application.json" },
     //   body: JSON.stringify({ email, password }),
@@ -21,9 +21,9 @@ export const useUserRegister = () => {
     //Rozpakowanie odpowiedzi
     // const json = await response.json();
 
-    // MOCK
+    //MOCK
     const response = { ok: true };
-    const json = { email: email, token: "123" };
+    const json = await addBudgetAPI(name, amount);
 
     //Jeśli statsu nie jest ok(!200)
     if (!response.ok) {
@@ -31,16 +31,14 @@ export const useUserRegister = () => {
       setError(json.error);
     }
     if (response.ok) {
-      //dodanie usera do local sotrage
-      localStorage.setItem("user", JSON.stringify(json));
-      //aktualiacji auth contextu
-      dispatch({ type: "LOGIN", payload: json });
+      //aktualiacji bunget contextu
+      dispatch({ type: "ADD", payload: json });
 
       setIsLoading(false);
-      // navigate("/");
-      console.log("Register complete");
+
+      console.log("Add budget complete");
     }
   };
 
-  return { register, isLoading, error };
+  return { addBudget, isLoading, error };
 };
