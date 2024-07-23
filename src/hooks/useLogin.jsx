@@ -12,11 +12,14 @@ export function useLogin() {
   const handleLogin = async (username, password) => {
     setLoading(true);
     setError(null);
+    // uderzenie w celu zalogowania
     try {
       const response = await axios.post("http://localhost:8080/login", {
         username,
         password,
       });
+
+      //wywołanie z authContexu funkcji odopwiedzlanej za logowanie i przekaznie otrzymanego tokenu
       login(response.data.token);
       navigate("/");
     } catch (error) {
