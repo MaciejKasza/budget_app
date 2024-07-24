@@ -5,19 +5,36 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
+import AppLayout from "./layouts/AppLayout";
+import DashboardPage from "./pages/DashboardPage";
+import Error from "./components/Error";
+import ExpensePage from "./pages/ExpensePage";
+import IncomePage from "./pages/IncomePage";
+import CategoriesPage from "./pages/CategoriesPage";
+import SettingsPage from "./pages/SettingsPage";
+import { AppProvider } from "./context/AppContext";
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
-          </Route>
-        </Routes>
-      </Router>
+      <AppProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<AppLayout />}>
+                <Route path="" element={<DashboardPage />} />
+                <Route path="/expense" element={<ExpensePage />} />
+                <Route path="/income" element={<IncomePage />} />
+                <Route path="/categories" element={<CategoriesPage />} />
+                <Route path="/settings" element={<SettingsPage />} />
+              </Route>
+            </Route>
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </Router>
+      </AppProvider>
     </AuthProvider>
   );
 }
