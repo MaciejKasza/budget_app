@@ -7,8 +7,6 @@ const Login = ({ props }) => {
   const [password, setPassword] = useState("");
   const { loading, error, handleLogin } = useLogin();
 
-  console.log(props);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(username, password);
@@ -16,7 +14,6 @@ const Login = ({ props }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <StyledTest></StyledTest>
       <h2>Login</h2>
       <div>
         <label>Username:</label>
@@ -43,9 +40,3 @@ const Login = ({ props }) => {
 };
 
 export default Login;
-
-const StyledTest = styled.div`
-  width: 100px;
-  height: 250px;
-  background-color: ${({ theme }) => theme.colors.green};
-`;

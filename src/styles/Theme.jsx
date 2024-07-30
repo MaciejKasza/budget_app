@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ThemeProvider } from "styled-components";
 import { ThemeContext } from "../context/ThemeContext";
+import { GlobalStyles } from "./GlobalStyles";
 
 const lightTheme = {
   colors: {
@@ -68,6 +69,7 @@ const Theme = ({ children }) => {
   console.log("Theme: ", theme);
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <GlobalStyles />
       {children}
     </ThemeProvider>
   );
