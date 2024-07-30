@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import styled from "styled-components";
 
-function Login() {
+const Login = ({ props }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { loading, error, handleLogin } = useLogin();
+
+  console.log(props);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +16,7 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit}>
+      <StyledTest></StyledTest>
       <h2>Login</h2>
       <div>
         <label>Username:</label>
@@ -36,6 +40,12 @@ function Login() {
       {error && <p>{error}</p>}
     </form>
   );
-}
+};
 
 export default Login;
+
+const StyledTest = styled.div`
+  width: 100px;
+  height: 250px;
+  background-color: ${({ theme }) => theme.colors.green};
+`;
