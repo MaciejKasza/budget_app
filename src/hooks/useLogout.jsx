@@ -3,28 +3,25 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-export function useLogin() {
+export function useLogout() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { logout } = useAuth();
 
-  const handleLogin = async (username, password) => {
+  const handleLogout = async () => {
     setLoading(true);
     setError(null);
-    // uderzenie w celu zalogowania
+    // uderzenie w celu wulogowania(nie potrzebne?)
     try {
-      // const response = await axios.post("http://localhost:8080/login", {
-      //   username,
-      //   password,
-      // });
-      const response = { data: { token: "test" } };
+      // const response = await axios.post("http://localhost:8080/logout", {});
+
       //wywołanie z authContexu funkcji odopwiedzlanej za logowanie i przekaznie otrzymanego tokenu
-      login(response.data.token);
+      logout();
       navigate("/");
     } catch (error) {
-      setError("Error logging in");
-      console.error("Error logging in", error);
+      setError("Error logging out");
+      console.error("Error logging out", error);
     } finally {
       setLoading(false);
     }
@@ -33,6 +30,6 @@ export function useLogin() {
   return {
     loading,
     error,
-    handleLogin,
+    handleLogout,
   };
 }

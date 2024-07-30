@@ -12,10 +12,10 @@ export function useRegister() {
     setError(null);
     try {
       // uderzenie do rejestracji
-      await axios.post("http://localhost:8080/register", {
-        username,
-        password,
-      });
+      // await axios.post("http://localhost:8080/register", {
+      //   username,
+      //   password,
+      // });
 
       // po rejetracji wywłoanie hooka z logowaniem
       await handleLogin(username, password);

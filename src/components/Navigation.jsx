@@ -1,7 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useLogout } from "../hooks/useLogout";
 
 function Navigation() {
+  const { handleLogout } = useLogout();
+
   return (
     <nav className="nav">
       {/* Zawartość nawigacji */}
@@ -21,6 +24,11 @@ function Navigation() {
         </li>
         <li>
           <NavLink to="/settings">Settings</NavLink>
+        </li>
+        <li>
+          <Link onClick={handleLogout} to="/">
+            Logout
+          </Link>
         </li>
       </ul>
     </nav>
