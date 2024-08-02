@@ -19,4 +19,10 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: inherit;
     }
+
+    input,button{
+      outline: none;
+      border: none;
+      background-color: none;
+    }
 `;

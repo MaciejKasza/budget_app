@@ -22,6 +22,7 @@ const lightTheme = {
     primary: "#2B2E48",
     secondary: "#7D7D7D",
     purpure: "#7B57E0", //wyróżniony tekst
+    darkPurpure: "#5627d8",
   },
   fontSizes: {
     xs: "10px",
@@ -52,6 +53,7 @@ const darkTheme = {
     primary: "#E3E3E3",
     secondary: "#B8C0CC",
     purpure: "#7B57E0",
+    darkPurpure: "#5627d8",
   },
   fontSizes: {
     xs: "10px",
