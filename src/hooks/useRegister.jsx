@@ -5,7 +5,7 @@ import { validateRegisterForm } from "../utils/validate";
 
 export function useRegister() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({});
   const { handleLogin } = useLogin(); // Uzyskaj funkcję handleLogin z useLogin
 
   const handleRegister = async (

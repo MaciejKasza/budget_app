@@ -20,7 +20,7 @@ function Register() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (error.hasOwnProperty(name)) {
+    if (error && error.hasOwnProperty(name)) {
       delete error[name];
     }
 
@@ -117,6 +117,15 @@ const StyledFormWraper = styled.div`
   box-shadow: 0 15px 35px rgba(0, 0, 0, 9);
 
   cursor: ${({ loading }) => (loading === "true" ? "wait" : "auto")};
+
+  @media (max-width: 600px) {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    transform: translateX(0);
+  }
 `;
 
 const StyledFormContent = styled.div`

@@ -32,14 +32,14 @@ html,
 }
 
 .header {
-  height: 150px;
-  background-color: #007bff;
-  color: white;
+  height: 100px;
+  background-color: #fff;
+  color: #000;
   padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .main {
@@ -47,8 +47,6 @@ html,
   background-color: #e9ecef;
   padding: 20px;
   overflow-y: auto; /* Pozwala na przewijanie w pionie, jeśli treść jest zbyt długa */
-}
-
-a.active {
-  color: red;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
