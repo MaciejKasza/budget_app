@@ -52,7 +52,7 @@ const darkTheme = {
     succes: "#2AA31F",
     primary: "#E3E3E3",
     secondary: "#B8C0CC",
-    purpure: "#7B57E0",
+    purpure: "rgb(123, 87, 224)",
     darkPurpure: "#5627d8",
   },
   fontSizes: {
