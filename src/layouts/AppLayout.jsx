@@ -10,7 +10,9 @@ function AppLayout() {
       <Navigation />
       <StyledContentContainer>
         <Header />
-        <Outlet />
+        <StyledPageWrapper>
+          <Outlet />
+        </StyledPageWrapper>
       </StyledContentContainer>
     </StyledAppContainer>
   );
@@ -30,4 +32,12 @@ const StyledContentContainer = styled.div`
   flex-direction: column;
   padding: 0 32px;
   gap: 32px;
+`;
+
+const StyledPageWrapper = styled.div`
+  flex: 1;
+  background-color: ${({ theme }) => theme.colors.bg};
+  color: ${({ theme }) => theme.fontColors.primary};
+
+  overflow-y: auto; /* Pozwala na przewijanie w pionie, jeśli treść jest zbyt długa */
 `;
