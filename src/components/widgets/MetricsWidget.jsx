@@ -11,7 +11,7 @@ import {
 } from "../../utils/widgetConfig";
 import styled from "styled-components";
 
-const MetricsWidget = ({ type, data }) => {
+const MetricsWidget = ({ type, data, width }) => {
   let config = DEFAULT_WIGET_CONFIG;
 
   switch (type) {
@@ -33,7 +33,7 @@ const MetricsWidget = ({ type, data }) => {
   }
 
   return (
-    <Widget>
+    <Widget width={width}>
       <StyledWidgetContent>
         <StyledWidgetHeader>
           <div className="img">{config.img}</div>

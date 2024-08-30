@@ -11,6 +11,7 @@ const lightTheme = {
     stroke: "#DCDCDD", //obramowania
     dash: "#DCE3EB",
     green: "#50C099",
+    red: "#C05050",
     blue: "#5DAAEE",
     yellow: "#FFC565",
     purpure: "#7B57E0",

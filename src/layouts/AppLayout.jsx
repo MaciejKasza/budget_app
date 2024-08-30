@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Navigation from "../components/navigation/Navigation";
 import styled from "styled-components";
+import { MOBILE_WIDTH } from "../utils/enum";
 
 function AppLayout() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    // subscribe to window resize event "onComponentDidMount"
+    window.addEventListener("resize", handleResizeWindow);
+    console.log(width);
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
   return (
     <StyledAppContainer>
-      <Navigation />
+      {width > MOBILE_WIDTH ? <Navigation /> : <h1>MOBILE</h1>}
+
       <StyledContentContainer>
         <Header />
         <StyledPageWrapper>

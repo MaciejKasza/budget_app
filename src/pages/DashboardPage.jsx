@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { Widget } from "../components/widgets/Widget";
 import MetricsWidget from "../components/widgets/MetricsWidget";
 import { WIDGET_TYPE } from "../utils/enum";
+import CategoriesWidget from "../components/widgets/CategoriesWidget";
+import TransactionListWidget from "../components/widgets/TransactionListWidget";
 
 function DashboardPage() {
   const { setCurrentPage } = useContext(AppContext);
@@ -40,6 +42,10 @@ function DashboardPage() {
           </p>
           {/* Możesz dodać więcej treści, aby zobaczyć działanie przewijania */}
         </Widget>
+        <CategoriesWidget width={"40%"} />
+      </StyledRow>
+      <StyledRow>
+        <TransactionListWidget></TransactionListWidget>
       </StyledRow>
     </StyledPageContent>
   );

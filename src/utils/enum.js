@@ -12,3 +12,5 @@ export const UserRole = {
   USER: "USER",
   GUEST: "GUEST",
 };
+
+export const MOBILE_WIDTH = 700;
