@@ -4,15 +4,17 @@ import styled from "styled-components";
 import Input from "./Input";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = ({ props }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { loading, error, handleLogin } = useLogin();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     handleLogin(username, password);
+    
   };
 
   const handleInputChange = (e) => {
@@ -33,6 +35,9 @@ const Login = ({ props }) => {
       <StyledFormContent>
         <h2>Sign In</h2>
         <StyledForm onSubmit={handleSubmit}>
+          <StyledError>
+            {error?.global ? <span>{error?.global}</span> : null}
+          </StyledError>
           <div>
             <Input
               type="text"
@@ -57,6 +62,7 @@ const Login = ({ props }) => {
               disabled={loading}
             />
           </div>
+
           <StyledLinks>
             <a href="#">Forgot Password?</a>
             <Link to="/register">Signup</Link>
@@ -99,6 +105,17 @@ const StyledFormWraper = styled.div`
   }
 `;
 
+const StyledError = styled.div`
+  min-height: 20px;
+  text-align: center;
+  padding: 10px 0;
+  span{
+    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    color: ${({ theme }) => theme.fontColors.error};
+  }
+`
+
 const StyledFormContent = styled.div`
   position: relative;
   width: 100%;
@@ -106,7 +123,6 @@ const StyledFormContent = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 40px;
 
   h2 {
     font-size: ${({ theme }) => theme.fontSizes.xxl}; // moze ręcznie
@@ -119,7 +135,7 @@ const StyledForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 10px;
 `;
 
 const StyledLinks = styled.div`
@@ -143,3 +159,5 @@ const StyledLinks = styled.div`
     }
   }
 `;
+
+

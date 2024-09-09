@@ -38,6 +38,9 @@ function Register() {
       <StyledFormContent>
         <h2>Sign Up</h2>
         <StyledForm onSubmit={handleSubmit}>
+          <StyledError>
+            {error?.global ? <span>{error?.global}</span> : null}
+          </StyledError>
           <div>
             <Input
               type="text"
@@ -128,6 +131,17 @@ const StyledFormWraper = styled.div`
   }
 `;
 
+const StyledError = styled.div`
+  min-height: 20px;
+  text-align: center;
+  padding: 10px 0;
+  span{
+    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    color: ${({ theme }) => theme.fontColors.error};
+  }
+`
+
 const StyledFormContent = styled.div`
   position: relative;
   width: 100%;
@@ -135,7 +149,6 @@ const StyledFormContent = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 40px;
 
   h2 {
     font-size: ${({ theme }) => theme.fontSizes.xxl}; // moze ręcznie
@@ -148,7 +161,7 @@ const StyledForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 10px;
 `;
 
 const StyledLinks = styled.div`

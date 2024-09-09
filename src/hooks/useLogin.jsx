@@ -17,17 +17,21 @@ export function useLogin() {
     if (Object.keys(valid).length === 0) {
       // uderzenie w celu zalogowania
       try {
-        // const response = await axios.post("http://localhost:8080/login", {
-        //   username,
-        //   password,
-        // });
-        const response = { data: { token: "test" } };
-        //wywołanie z authContexu funkcji odopwiedzlanej za logowanie i przekaznie otrzymanego tokenu
-        login(response.data.token);
-        navigate("/");
+        const response = await axios.post("http://localhost:8080/auth",{
+
+
+            login: username,
+            password: password,
+            isDemo: true,
+
+        },{withCredentials: false,});
+
+        if(response.status === 200){
+          login(response.data.token);
+          navigate("/");
+        }
       } catch (error) {
-        setError("Error logging in");
-        console.error("Error logging in", error);
+        setError({global: "Incorrect login or password"});
       } finally {
         setLoading(false);
       }
