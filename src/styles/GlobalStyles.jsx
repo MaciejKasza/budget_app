@@ -25,4 +25,12 @@ export const GlobalStyles = createGlobalStyle`
       border: none;
       background-color: none;
     }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+      transition: background-color 600000s 0s, color 600000s 0s;
+  }
+  input[data-autocompleted] {
+      background-color: transparent !important;
+  }
 `;
